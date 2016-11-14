@@ -10,14 +10,4 @@ import { ContactsService } from './contacts.service';
 
 export class ContactsAppComponent{
 
-
-  // contacts: Contact[];
-
-  // constructor(private contactsSerice: ContactsService){
-    
-  // }
-
-  // ngOnInit(){
-  //   this.contacts = this.contactsSerice.getContacts();
-  // }
 }
