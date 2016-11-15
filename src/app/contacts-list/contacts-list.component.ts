@@ -10,22 +10,19 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ContactsListComponent implements OnInit {
 
-  contacts: Contact[];
+  contacts: Observable<Contact[]>;
 
   constructor(private contactsService: ContactsService){
     
-      contactsService.getContacts()
-        .subscribe(contacts => this.contacts = contacts);
+      // contactsService.getContacts()
+      //   .subscribe(contacts => this.contacts = contacts);
   }
 
   ngOnInit(){
-    //this.contacts = this.contactsSerice.getContacts();
+    this.contacts = this.contactsService.getContacts();
   }
 
   searchInput(value){
-    console.log(value)
-    this.contactsService.search(value).subscribe(
-        contacts => this.contacts = contacts
-    )
+   this.contacts = this.contactsService.search(value);
   }
 }

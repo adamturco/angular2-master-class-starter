@@ -28,7 +28,6 @@ export class ContactsService {
     }
 
     search(term: string){
-        console.log('term: ', term);
         return this.http.get(`http://localhost:4201/api/search?text=${term}`)
             .map(res => res.json().items);        
     }
