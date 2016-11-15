@@ -4,7 +4,6 @@ import { Contact } from '../models/contact';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'trm-contacts-list',
   templateUrl: './contacts-detail.component.html'
 })
 

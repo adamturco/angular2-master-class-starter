@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CONTACT_DATA } from './data/contact-data';
 import { Http } from '@angular/http';
+import { Contact } from './models/contact';
 
 @Injectable()
 export class ContactsService {
@@ -17,11 +18,12 @@ export class ContactsService {
   } 
 
   getContact(id: string){
-    //return this.getContacts().find(contact => contact.id.toString() === id);
     
     return this.http.get(this.API_ENDPOINT + '/contacts/' + id)
-        .map(res => res.json())
-        .map(data => data.item);
-    } 
+        .map(res => res.json().item);
+    }
 
+    updateContact(contact: Contact){
+        return this.http.put(`http://localhost:4201/api/contacts/${contact.id}`, contact);        
+    }
 }
