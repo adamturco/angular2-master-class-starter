@@ -42,12 +42,12 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="card-action">
+            <!--<div class="card-action">
                 <a class="btn" [routerLink]="['/']">Go Back</a>
-            </div>
+            </div>-->
             <div class="card-action">
-                <!--<a class="btn" *ngIf="contact" [routerLink]="['/contact', contact.id, 'edit']">Edit</a>-->
-                <a class="btn" *ngIf="contact" [routerLink]="['edit']">Edit</a>
+                <a class="btn" *ngIf="contact" (click)="edit.emit(contact.id)">Edit</a>
+                <a class="btn" *ngIf="contact" (click)="back.emit(contact.id)">Back</a>
             </div>
         </div>
     </div>
