@@ -10,20 +10,26 @@ export class ContactsService {
 
   constructor(private http: Http) { }
 
-  getContacts() {
-    //return CONTACT_DATA;
+    getContacts() {
+        //return CONTACT_DATA;
 
-    return this.http.get(this.API_ENDPOINT + '/contacts')
-        .map(res => res.json().items);
-  } 
+        return this.http.get(this.API_ENDPOINT + '/contacts')
+            .map(res => res.json().items);
+    } 
 
-  getContact(id: string){
-    
-    return this.http.get(this.API_ENDPOINT + '/contacts/' + id)
-        .map(res => res.json().item);
-    }
+    getContact(id: string){
+        
+        return this.http.get(this.API_ENDPOINT + '/contacts/' + id)
+            .map(res => res.json().item);
+    }   
 
     updateContact(contact: Contact){
         return this.http.put(`http://localhost:4201/api/contacts/${contact.id}`, contact);        
+    }
+
+    search(term: string){
+        console.log('term: ', term);
+        return this.http.get(`http://localhost:4201/api/search?text=${term}`)
+            .map(res => res.json().items);        
     }
 }
