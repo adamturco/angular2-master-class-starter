@@ -10,6 +10,7 @@ import { Subject } from 'rxjs/Subject';
   templateUrl: './contacts-list.component.html',
   styleUrls: ['./contacts-list.component.css']
 })
+
 export class ContactsListComponent implements OnInit {
 
   contacts: Observable<Contact[]>;
@@ -22,14 +23,16 @@ export class ContactsListComponent implements OnInit {
 
   ngOnInit(){
 
-    this.contacts = this.contactsService.getContacts();
-    
-    this.terms$.debounceTime(400)
-               .distinctUntilChanged()
-               .subscribe(term => this.searchInput(term));    
-  }
+    this.contacts = this.terms$.debounceTime(400)
+                        .distinctUntilChanged()
+                        .switchMap(term => { return this.contactsService.search(term) })
+                        .merge(this.contactsService.getContacts()); //initializes the contacts list
 
-  searchInput(value){
-    this.contacts = this.contactsService.search(value);
+    //this is the ugly way      
+    // this.contacts = this.contactsService.getContacts().merge(
+    //                   this.terms$.debounceTime(400)
+    //                             .distinctUntilChanged()
+    //                             .switchMap(term => { return this.contactsService.search(term) }))
+      
   }
 }

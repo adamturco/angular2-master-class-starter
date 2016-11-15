@@ -11,8 +11,6 @@ export class ContactsService {
   constructor(private http: Http) { }
 
     getContacts() {
-        //return CONTACT_DATA;
-
         return this.http.get(this.API_ENDPOINT + '/contacts')
             .map(res => res.json().items);
     } 
