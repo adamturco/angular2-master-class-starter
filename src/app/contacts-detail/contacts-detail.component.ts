@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ContactsService } from '../contacts.service';
 import { Contact } from '../models/contact';
+import { EventBusService } from '../event-bus.service';
 
 @Component({
   selector: 'trm-contacts-detail',
@@ -13,11 +14,14 @@ export class ContactsDetailComponent implements OnInit{
   @Output() edit = new EventEmitter<Contact>();
   @Output() back = new EventEmitter<void>();
 
-  constructor() {
+  public title: string;
+
+  constructor(private eventBusService: EventBusService) {
   }
 
   ngOnInit() {
-
+    this.eventBusService.observe('appTitleChange')
+                        .subscribe(title => this.title = title);
   }
 
 }

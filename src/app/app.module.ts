@@ -12,18 +12,26 @@ import 'rxjs/add/operator/merge';
 import { ContactsAppComponent } from './contacts.component';
 import { ContactsHeaderComponent } from './contacts-header/contacts-header.component';
 import { ContactsService } from './contacts.service';
+import { EventBusService } from './event-bus.service';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 import { ContactsAppRoutes } from './app.routes';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
+import { TabComponent } from './tab/tab.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactsHeaderComponent, ContactsListComponent, ContactsDetailComponent, 
-                ContactsEditorComponent, ContactsDetailViewComponent],
+  declarations: [
+    ContactsAppComponent, 
+    ContactsHeaderComponent, 
+    ContactsListComponent, 
+    ContactsDetailComponent, 
+    ContactsEditorComponent, 
+    ContactsDetailViewComponent, TabComponent, TabsComponent],
   imports: [BrowserModule, RouterModule.forRoot(ContactsAppRoutes), HttpModule, FormsModule],
   bootstrap: [ContactsAppComponent],
-  providers: [ContactsService]
+  providers: [ContactsService, EventBusService]
 })
 export class ContactsModule {
 
